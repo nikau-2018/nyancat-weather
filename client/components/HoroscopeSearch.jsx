@@ -8,7 +8,8 @@ class HoroscopeSearch extends React.Component {
     this.state = {
       horoscope: '',
       submit: '',
-      dailyhoroscope: []
+      dailyhoroscope: {},
+      dates: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -35,18 +36,21 @@ class HoroscopeSearch extends React.Component {
     return getHoroscopes()
       .then(dailyhoroscope => {
         this.setState({
-          dailyhoroscope: dailyhoroscope
+          dailyhoroscope: dailyhoroscope.dailyhoroscope,
+          dates: dailyhoroscope.dates
         })
       })
   }
 
   render () {
+    console.log(typeof this.state.dates)
     return (
       <div className='horoscope'>
         <h2>Horoscope</h2>
         My horoscope is: <br />
         <select value={this.state.horoscope} name="horoscope" onChange={this.handleChange}>
           <option value="">Please select...</option>
+          {/* {Object.keys(this.state.dates)} */}
           <option value="Capricorn">Capricorn</option>
           <option value="Aquarius">Aquarius</option>
           <option value="Pisces">Pisces</option>
@@ -61,7 +65,7 @@ class HoroscopeSearch extends React.Component {
           <option value="Sagittarius">Sagittarius</option>
         </select><br />
         <button onClick={this.handleClick}>Get Horoscope</button>
-        <p>This is your daily horoscope: {this.state.submit && this.state.dailyhoroscope[this.state.submit].split('<')[0]}</p>
+        <p><strong>Today's horoscope: </strong>{this.state.submit && this.state.dailyhoroscope[this.state.submit].split('<')[0]}</p>
       </div>
     )
   }

@@ -6,7 +6,7 @@ export function getHoroscopes () {
   return request
     .get(horoscopeApi)
     .then(res => {
-      return res.body.dailyhoroscope
+      return res.body
     })
     .catch(err => {
       console.log(err.message)
