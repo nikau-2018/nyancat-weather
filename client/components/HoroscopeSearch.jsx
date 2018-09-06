@@ -27,7 +27,6 @@ class HoroscopeSearch extends React.Component {
     })
   }
 
-  // BELOW ISN'T WORKING... WORK IN PROGRESS
   componentDidMount () {
     this.fetchHoroscopes()
   }
@@ -62,7 +61,7 @@ class HoroscopeSearch extends React.Component {
           <option value="Sagittarius">Sagittarius</option>
         </select><br />
         <button onClick={this.handleClick}>Get Horoscope</button>
-        <p>This is your daily horoscope: {this.state.submit && this.state.dailyhoroscope[this.state.submit]}</p>
+        <p>This is your daily horoscope: {this.state.submit && this.state.dailyhoroscope[this.state.submit].split('<')[0]}</p>
       </div>
     )
   }
