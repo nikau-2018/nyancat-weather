@@ -1,14 +1,17 @@
 import React from 'react'
+import request from 'superagent'
 
 class HoroscopeSearch extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       horoscope: '',
-      submit: ''
+      submit: '',
+      dailyHoroscopes: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.getHoroscopes = this.getHoroscopes.bind(this)    
   }
 
   handleChange (e) {
@@ -22,6 +25,21 @@ class HoroscopeSearch extends React.Component {
       submit: this.state.horoscope
     })
   }
+
+  // BELOW ISN'T WORKING... WORK IN PROGRESS
+  getHoroscopes () {
+    request
+      .get('https://www.horoscopes-and-astrology.com/json')
+      .then(res => {
+        this.setState({
+          dailyHoroscopes: res.body.dailyhoroscope
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
   render () {
     return (
       <div className='Horoscope'>
@@ -43,6 +61,7 @@ class HoroscopeSearch extends React.Component {
           <option value="Sagittarius">Sagittarius</option>
         </select><br />
         <button onClick={this.handleClick}>Get Horoscope</button>
+        <p>This is your daily horoscope: {this.dailyHoroscopes}</p>
       </div>
     )
   }
