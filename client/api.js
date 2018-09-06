@@ -1,15 +1,14 @@
 import request from 'superagent'
 
-// const horoscopeApi = 'https://www.horoscopes-and-astrology.com/json'
+const horoscopeApi = 'https://www.horoscopes-and-astrology.com/json'
 
-// function getHoroscopes () {
-//   return request
-//     .get(horoscopeApi)
-//     .catch(err => {
-//       console.log(err.message)
-//     })
-// }
-
-export default {
-  // getHoroscopes
+export function getHoroscopes () {
+  return request
+    .get(horoscopeApi)
+    .then(res => {
+      return res.body
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
 }
