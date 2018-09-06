@@ -5,7 +5,8 @@ class WeatherSearch extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      weather: []
+      weather: [],
+      city: ''
     }
   }
 
@@ -33,10 +34,10 @@ class WeatherSearch extends React.Component {
     return (
       <div className='Weather'>
         <h2>Weather</h2>
-        {/* {this.state.weather.map((weather, i) => (
-          <div key={i}>
-            <h1> <span className = 'degrees'>{Object.values(weather)}</span></h1></div>
-        ))} */}
+        <div className = 'form'>
+          <p>Location: <input name='city'/></p>
+          <button>Submit</button>
+        </div>
         <h1>{this.state.weather.temp}</h1>
       </div>
     )
