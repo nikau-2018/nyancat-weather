@@ -1,10 +1,15 @@
 import React from 'react'
 
-const App = () => {
+import Header from './Header'
+import Search from './Search'
+
+const App = props => {
   return (
-    <h1>React development has begun!</h1>
+    <div>
+      <Header />
+      <Search />
+    </div>
   )
 }
 
 export default App
-
