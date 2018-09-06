@@ -50,8 +50,8 @@ class HoroscopeSearch extends React.Component {
         My horoscope is: <br />
         <select value={this.state.horoscope} name="horoscope" onChange={this.handleChange}>
           <option value="">Please select...</option>
-          {horoscopeList.map(item => {
-            return <option value={item}>{item}</option>
+          {horoscopeList.map((item, i) => {
+            return <option key={i} value={item}>{item}</option>
           })}
         </select><br />
         <button onClick={this.handleClick}>Get Horoscope</button>
