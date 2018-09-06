@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { getHoroscopes } from '../api'
+import request from 'superagent'
 
 class HoroscopeSearch extends React.Component {
   constructor (props) {
@@ -8,12 +7,11 @@ class HoroscopeSearch extends React.Component {
     this.state = {
       horoscope: '',
       submit: '',
-      dailyhoroscope: {},
-      dates: {}
+      dailyHoroscopes: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    this.fetchHoroscopes = this.fetchHoroscopes.bind(this)
+    this.getHoroscopes = this.getHoroscopes.bind(this)
   }
 
   handleChange (e) {
@@ -28,29 +26,27 @@ class HoroscopeSearch extends React.Component {
     })
   }
 
-  componentDidMount () {
-    this.fetchHoroscopes()
-  }
-
-  fetchHoroscopes () {
-    return getHoroscopes()
-      .then(dailyhoroscope => {
+  // BELOW ISN'T WORKING... WORK IN PROGRESS
+  getHoroscopes () {
+    request
+      .get('https://www.horoscopes-and-astrology.com/json')
+      .then(res => {
         this.setState({
-          dailyhoroscope: dailyhoroscope.dailyhoroscope,
-          dates: dailyhoroscope.dates
+          dailyHoroscopes: res.body.dailyhoroscope
         })
+      })
+      .catch(err => {
+        console.error(err)
       })
   }
 
   render () {
-    console.log(typeof this.state.dates)
     return (
-      <div className='horoscope'>
+      <div className='Horoscope'>
         <h2>Horoscope</h2>
         My horoscope is: <br />
         <select value={this.state.horoscope} name="horoscope" onChange={this.handleChange}>
           <option value="">Please select...</option>
-          {/* {Object.keys(this.state.dates)} */}
           <option value="Capricorn">Capricorn</option>
           <option value="Aquarius">Aquarius</option>
           <option value="Pisces">Pisces</option>
@@ -65,7 +61,7 @@ class HoroscopeSearch extends React.Component {
           <option value="Sagittarius">Sagittarius</option>
         </select><br />
         <button onClick={this.handleClick}>Get Horoscope</button>
-        <p><strong>Today's horoscope: </strong>{this.state.submit && this.state.dailyhoroscope[this.state.submit].split('<')[0]}</p>
+        <p>This is your daily horoscope: {this.dailyHoroscopes}</p>
       </div>
     )
   }
