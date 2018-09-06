@@ -1,14 +1,16 @@
 import React from 'react'
+import {HashRouter as Router, Route} from 'react-router-dom'
 
-import Header from './Header'
-import Search from './Search'
+import Home from './Home'
 
 const App = props => {
   return (
-    <div>
-      <Header />
-      <Search />
-    </div>
+    <Router>
+      <div>
+        <Route path='/' component={Home} />
+      </div>
+    </Router>
+
   )
 }
 
