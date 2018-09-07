@@ -5,29 +5,34 @@ class DuckDuckGo extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      topic: []
+      relatedTopics: []
     }
     this.fetchDuck = this.fetchDuck.bind(this)
   }
 
   componentDidMount () {
-    this.fetchDuck()
+    // hardcoded for now, but should get this from the user
+    const query = 'auckland'
+    this.fetchDuck(query)
   }
 
-  getDuck () {
-    // const apiKey = 'NXAmZhbmoEmsh7cGrs65Iuou2kwsp1zkjsGjsnInDHz4mw46IS'
+  getDuck (query) {
     return request
-      .get(`https://duckduckgo-duckduckgo-zero-click-info.p.mashape.com/?q=DuckDuckGo&format=json`)
+      .get(`https://duckduckgo-duckduckgo-zero-click-info.p.mashape.com/?q=${query}&format=json`)
+      .set('X-Mashape-Key', 'NXAmZhbmoEmsh7cGrs65Iuou2kwsp1zkjsGjsnInDHz4mw46IS')
       .then(res => {
-        return res.body
+        const json = JSON.parse(res.text)
+        this.setState({
+          relatedTopics: json.RelatedTopics
+        })
       })
       .catch(err => {
         console.error(err)
       })
   }
 
-  fetchDuck () {
-    return getDuck()
+  fetchDuck (query) {
+    return this.getDuck(query)
       .then(items => {
         this.setState({
           topic: items
@@ -39,11 +44,11 @@ class DuckDuckGo extends React.Component {
     return (
       <div className='DuckDuckGo'>
         <h2>DuckDuckGo</h2>
-        {/* {this.state.weather.map((weather, i) => (
-          <div key={i}>
-            <h1> <span className = 'degrees'>{Object.values(weather)}</span></h1></div>
-        ))} */}
-        <h1>{this.state.weather.temp}</h1>
+        {
+          this.state.relatedTopics.map((topic, i) => {
+            return <div key={i}><p>{topic.Text}</p></div>
+          })
+        }
       </div>
     )
   }

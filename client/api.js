@@ -1,7 +1,6 @@
 import request from 'superagent'
 
 const horoscopeApi = 'https://www.horoscopes-and-astrology.com/json'
-const duckDuckApi = 'https://duckduckgo-duckduckgo-zero-click-info.p.mashape.com/?q=DuckDuckGo&format=json'
 
 export function getHoroscopes () {
   return request
