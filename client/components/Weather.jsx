@@ -7,7 +7,9 @@ class WeatherSearch extends React.Component {
     this.state = {
       city: '',
       weather: {
-        temp: 0
+        temp: '',
+        temp_max: '',
+        temp_min: ''
       }
     }
     this.handleChange = this.handleChange.bind(this)
@@ -51,19 +53,15 @@ class WeatherSearch extends React.Component {
   }
 
   render () {
-    const style = {
-      fontSize: 20
-    }
-
-    // const temperature = Number(this.state.weather.temp)
     return (
       <div className='form'>
         <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
-        <button onClick={this.handleSubmit}>Submit</button><br />
+        <button onClick={this.handleSubmit}>Submit</button>
         <button onClick={this.clearSubmit}>Clear</button>
-        <div style={style}>{this.state.city}</div>
-        <div style={style}>{this.state.weather.temp > 0 && Math.round(Number(this.state.weather.temp)) + ' degrees'}
-        </div>
+        <p>{this.state.weather.temp && `The temperature in ${this.state.city} today is ` + Math.round(Number(this.state.weather.temp)) + ' degrees celsius.'}</p>
+        <p>{this.state.weather.temp_max && `The high is ${this.state.weather.temp_max}` + ' degrees celsius.'}</p>
+        <p>{this.state.weather.temp_min && `The low is ${this.state.weather.temp_min}` + ' degrees celsius.'}</p>
+
       </div>
     )
   }
