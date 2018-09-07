@@ -29,7 +29,8 @@ class WeatherSearch extends React.Component {
   clearSubmit (e) {
     e.preventDefault()
     this.setState({
-      city: ''
+      city: '',
+      weather: {}
     })
   }
 
@@ -57,12 +58,11 @@ class WeatherSearch extends React.Component {
     // const temperature = Number(this.state.weather.temp)
     return (
       <div className='form'>
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
-          <button type= 'submit'>Submit</button></form>
+        <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
+        <button onClick={this.handleSubmit}>Submit</button><br />
         <button onClick={this.clearSubmit}>Clear</button>
         <div style={style}>{this.state.city}</div>
-        <div style={style}>{Number(this.state.weather.temp)}
+        <div style={style}>{this.state.weather.temp > 0 && Math.round(Number(this.state.weather.temp)) + ' degrees'}
         </div>
       </div>
     )
