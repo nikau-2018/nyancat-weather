@@ -10,6 +10,10 @@ class WeatherSearch extends React.Component {
         temp: '',
         temp_max: '',
         temp_min: ''
+      },
+      sunTimes: {
+        sunrise: '',
+        sunset: ''
       }
     }
     this.handleChange = this.handleChange.bind(this)
@@ -32,7 +36,8 @@ class WeatherSearch extends React.Component {
     e.preventDefault()
     this.setState({
       city: '',
-      weather: {}
+      weather: {},
+      sunTimes: {}
     })
   }
 
@@ -44,7 +49,8 @@ class WeatherSearch extends React.Component {
       .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`)
       .then(res => {
         this.setState({
-          weather: res.body.main
+          weather: res.body.main,
+          sunTimes: res.body.sys
         })
       })
       .catch(err => {
@@ -53,6 +59,7 @@ class WeatherSearch extends React.Component {
   }
 
   render () {
+    console.log(this.state.sunTimes.sunrise)
     return (
       <div className='form'>
         <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
@@ -61,6 +68,8 @@ class WeatherSearch extends React.Component {
         <p>{this.state.weather.temp && `The temperature in ${this.state.city} today is ` + Math.round(Number(this.state.weather.temp)) + ' degrees celsius.'}</p>
         <p>{this.state.weather.temp_max && `The high is ${this.state.weather.temp_max}` + ' degrees celsius.'}</p>
         <p>{this.state.weather.temp_min && `The low is ${this.state.weather.temp_min}` + ' degrees celsius.'}</p>
+        <p>{this.state.sunTimes.sunrise && `Sunrise: ${Date(this.state.sunTimes.sunrise)}`}</p>
+        <p>{this.state.sunTimes.sunset && `Sunset: ${Date(this.state.sunTimes.sunset)}`}</p>
 
       </div>
     )
