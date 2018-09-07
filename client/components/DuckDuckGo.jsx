@@ -16,6 +16,20 @@ class DuckDuckGo extends React.Component {
     this.fetchDuck(query)
   }
 
+  handleChange (e) {
+    this.setState({
+      city: e.target.value
+    })
+  }
+
+  handleSubmit (e) {
+    const submitState = this.state.city
+    e.preventDefault()
+    this.setState({
+      submit: submitState
+    })
+  }
+
   getDuck (query) {
     return request
       .get(`https://duckduckgo-duckduckgo-zero-click-info.p.mashape.com/?q=${query}&format=json`)
@@ -44,6 +58,11 @@ class DuckDuckGo extends React.Component {
     return (
       <div className='DuckDuckGo'>
         <h2>DuckDuckGo</h2>
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
+          <button type= 'submit'>Submit</button></form>
+        <h1>{this.state.submit}</h1>
+
         {
           this.state.relatedTopics.map((topic, i) => {
             return <div key={i}><p>{topic.Text}</p></div>
