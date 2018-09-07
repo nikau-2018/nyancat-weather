@@ -6,17 +6,14 @@ class WeatherSearch extends React.Component {
     super(props)
     this.state = {
       city: '',
-      submit: '',
-      weather: [],
-      temp: ''
+      weather: {
+        temp: 0
+      }
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getWeather = this.getWeather.bind(this)
-  }
-
-  componentDidUpdate () {
-    this.getWeather()
+    this.clearSubmit = this.clearSubmit.bind(this)
   }
 
   handleChange (e) {
@@ -26,30 +23,25 @@ class WeatherSearch extends React.Component {
   }
 
   handleSubmit (e) {
-    const submitState = this.state.city
-    e.preventDefault()
-    this.setState({
-      submit: submitState
-    })
+    this.getWeather()
   }
 
   clearSubmit (e) {
     e.preventDefault()
     this.setState({
-      submit: ''
+      city: ''
     })
   }
 
   getWeather () {
-    const apiKey = '04724fc963d95283c15d1baad2517bb6&'
-    let city = this.state.submit
+    const apiKey = 'e213a796d74993feb0fea46f73ce123a'
+    let city = this.state.city
     let units = 'metric'
     request
       .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`)
       .then(res => {
         this.setState({
-          weather: res.body.main,
-          temp: res.body.main.temp
+          weather: res.body.main
         })
       })
       .catch(err => {
@@ -68,9 +60,9 @@ class WeatherSearch extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
           <button type= 'submit'>Submit</button></form>
-        <button onSubmit={this.clearSubmit}>Clear</button>
-        <div style={style}>{this.state.submit}</div>
-        <div style={style}>{Number(this.state.temp)}
+        <button onClick={this.clearSubmit}>Clear</button>
+        <div style={style}>{this.state.city}</div>
+        <div style={style}>{Number(this.state.weather.temp)}
         </div>
       </div>
     )
