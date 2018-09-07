@@ -41,7 +41,7 @@ class DuckDuckGo extends React.Component {
   render () {
     return (
       <div className='DuckDuckGo'>
-        <h2>DuckDuckGo</h2>
+        <h4>DuckDuckGo</h4>
         <input value={this.state.search} onChange ={this.handleChange}/>
         <button onClick={this.handleSubmit}>Submit</button>
         {
