@@ -39,11 +39,6 @@ class HoroscopeSearch extends React.Component {
     return (
       <div className='horoscope'>
         <h4>Horoscopes</h4>
-        <ul>
-          {horoscopeList.map((item, i) => {
-            return <li key={i}><strong>{item}: </strong>{this.state.dates[item]}</li>
-          })}
-        </ul>
         My horoscope is: <br />
         <select value={this.state.horoscope} name="horoscope" onChange={this.handleChange}>
           <option value="">Please select...</option>
@@ -54,6 +49,11 @@ class HoroscopeSearch extends React.Component {
         {this.state.horoscope && <p>
           <strong>Today&apos;s horoscope: </strong>{this.state.dailyhoroscope[this.state.horoscope].split('<')[0]}
         </p>}
+        <ul>
+          {horoscopeList.map((item, i) => {
+            return <li key={i}><strong>{item}: </strong>{this.state.dates[item]}</li>
+          })}
+        </ul>
 
       </div>
     )

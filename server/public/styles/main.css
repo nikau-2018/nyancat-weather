@@ -22,11 +22,30 @@ h1 {
       background: rgb(160, 160, 160);
       color: white;
       text-align: center;
-      padding: 2%
+      padding: 3%
     }
 
     .heading {
       background: #CDCDCD;
       color: white;
+      margin-bottom: 3%
+    }
+
+    ul li {
+      list-style: none;
+      margin-left: -2%
+    }
+
+    li {
+      padding : 3%;
+    }
+
+    ul {
+      background: #CDCDCD;
+      padding: 5%
+
+    }
+
+    select {
       margin-bottom: 3%
     }
