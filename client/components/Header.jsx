@@ -4,8 +4,7 @@ const Header = () => {
   const styles = {
     background: '#88BBD6',
     color: 'white',
-    fontFamily: 'Montserrat',
-    fontWeight: 'bold'
+    fontFamily: 'Montserrat'
   }
   return (
     <div className='header' style={styles}>
