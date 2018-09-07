@@ -59,7 +59,7 @@ class HoroscopeSearch extends React.Component {
             return <option key={i} value={item}>{item}</option>
           })}
         </select><br />
-        <button onClick={this.handleClick}>Get Horoscope</button>
+        <button onClick={this.handleClick}>Get Horoscope</button><br /><br />
         <p><strong>Today's horoscope: </strong>{this.state.submit && this.state.dailyhoroscope[this.state.submit].split('<')[0]}</p>
       </div>
     )
