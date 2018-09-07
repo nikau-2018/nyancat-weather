@@ -25,6 +25,11 @@ h1 {
       padding: 3%
     }
 
+    input {
+      width: 100% !important;
+      margin-bottom: 2%
+    }
+
     .heading {
       background: #CDCDCD;
       color: white;
