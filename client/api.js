@@ -12,3 +12,14 @@ export function getHoroscopes () {
       console.log(err.message)
     })
 }
+
+export function getDuckDuck () {
+  return request
+    .get(duckDuckApi)
+    .then(res => {
+      return res.body
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+}
