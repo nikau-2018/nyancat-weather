@@ -38,7 +38,7 @@ class HoroscopeSearch extends React.Component {
     const horoscopeList = Object.keys(this.state.dates)
     return (
       <div className='horoscope'>
-        <h2>Horoscopes</h2>
+        <h4>Horoscopes</h4>
         <ul>
           {horoscopeList.map((item, i) => {
             return <li key={i}><strong>{item}: </strong>{this.state.dates[item]}</li>

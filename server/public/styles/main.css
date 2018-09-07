@@ -8,7 +8,7 @@ h1 {
 }
 
 * { 
-  outline: 1px solid #947676 !important; 
+  outline: 1px transparent #947676 !important; 
   } 
   
    * { 
@@ -18,3 +18,15 @@ h1 {
     box-sizing: border-box; 
     }
   
+    h4 {
+      background: rgb(160, 160, 160);
+      color: white;
+      text-align: center;
+      padding: 2%
+    }
+
+    .heading {
+      background: #CDCDCD;
+      color: white;
+      margin-bottom: 3%
+    }
