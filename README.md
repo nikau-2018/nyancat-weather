@@ -1,4 +1,4 @@
-# api mashup 
+# Your Daily Dose Of Random Stuff
 
 A Friday group project playing around with APIs
 
