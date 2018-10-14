@@ -5,7 +5,8 @@ class WeatherSearch extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      weather: []
+      degrees: [],
+      rain: ''
     }
   }
 
@@ -21,7 +22,8 @@ class WeatherSearch extends React.Component {
       .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`)
       .then(res => {
         this.setState({
-          weather: res.body.main
+          degrees: res.body.main,
+          rain: res.body.weather
         })
       })
       .catch(err => {
@@ -33,11 +35,7 @@ class WeatherSearch extends React.Component {
     return (
       <div className='Weather'>
         <h2>Weather</h2>
-        {/* {this.state.weather.map((weather, i) => (
-          <div key={i}>
-            <h1> <span className = 'degrees'>{Object.values(weather)}</span></h1></div>
-        ))} */}
-        <h1>{this.state.weather.temp}</h1>
+        <h1>{this.state.degrees.temp + ' degrees'}</h1>
       </div>
     )
   }
