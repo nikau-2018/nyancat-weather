@@ -1,16 +1,16 @@
-# A starter webpack project for React
+# api mashup 
 
-This is a starter project that uses webpack to transpile and bundle ES6 React code. To use, consider these steps:
+A Friday group project playing around with APIs
 
-* Fork this repo
-* Rename your repo according to the app you're building
+###### How to use this repo:
 
-```sh
-git clone https://github.com/[your-account]/[your-app].git
-cd [your-app] && yarn
 ```
+clone this repo 
 
-To start the development server with a watcher that rebuilds your code, run `yarn dev`. The assets built by webpack are placed in `server/public`. This folder is defined as a static folder in an Express.js server that can be started with `npm run server`.
+yarn
 
-Additional components should be placed in `client/components`.
+yarn start
 
+go to localhost:3000 in your browser
+
+```
