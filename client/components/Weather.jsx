@@ -5,25 +5,53 @@ class WeatherSearch extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      degrees: [],
-      rain: ''
+      city: '',
+      weather: {
+        temp: '',
+        temp_max: '',
+        temp_min: ''
+      },
+      wind: {
+        speed: '',
+        deg: ''
+      }
+
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.getWeather = this.getWeather.bind(this)
+    this.clearSubmit = this.clearSubmit.bind(this)
   }
 
-  componentDidMount () {
+  handleChange (e) {
+    this.setState({
+      city: e.target.value
+    })
+  }
+
+  handleSubmit (e) {
     this.getWeather()
   }
 
+  clearSubmit (e) {
+    e.preventDefault()
+    this.setState({
+      city: '',
+      weather: {},
+      sunTimes: {}
+    })
+  }
+
   getWeather () {
-    const apiKey = '04724fc963d95283c15d1baad2517bb6&'
-    let city = 'auckland'
+    const apiKey = 'e213a796d74993feb0fea46f73ce123a'
+    let city = this.state.city
     let units = 'metric'
     request
       .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`)
       .then(res => {
         this.setState({
-          degrees: res.body.main,
-          rain: res.body.weather
+          weather: res.body.main,
+          wind: res.body.wind
         })
       })
       .catch(err => {
@@ -33,9 +61,13 @@ class WeatherSearch extends React.Component {
 
   render () {
     return (
-      <div className='Weather'>
-        <h2>Weather</h2>
-        <h1>{this.state.degrees.temp + ' degrees'}</h1>
+      <div className='form'>
+        <input value={this.state.city} onChange = {this.handleChange.bind(this)}/>
+        <button onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.clearSubmit}>Clear</button>
+        <p>{this.state.weather.temp && `Today the temperature in ${this.state.city} is ` + Math.round(Number(this.state.weather.temp)) + ' degrees Celsius.'}</p>
+        <p>{this.state.weather.temp_max && `High: ${this.state.weather.temp_max}` + ' degrees Celsius'}</p>
+        <p>{this.state.weather.temp_min && `Low: ${this.state.weather.temp_min}` + ' degrees Celsius'}</p>
       </div>
     )
   }

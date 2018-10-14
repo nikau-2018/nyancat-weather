@@ -1,3 +1,56 @@
 body {
   margin: 5%;
+  background: #E9E9E9
 }
+
+h1 {
+  text-align: center;
+}
+
+* { 
+  outline: 1px transparent #947676 !important; 
+  } 
+  
+   * { 
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    -ms-box-sizing: border-box; 
+    box-sizing: border-box; 
+    }
+  
+    h4 {
+      background: rgb(160, 160, 160);
+      color: white;
+      text-align: center;
+      padding: 3%
+    }
+
+    input {
+      width: 100% !important;
+      margin-bottom: 2%
+    }
+
+    .heading {
+      background: #CDCDCD;
+      color: white;
+      margin-bottom: 3%
+    }
+
+    ul li {
+      list-style: none;
+      margin-left: -2%
+    }
+
+    li {
+      padding : 3%;
+    }
+
+    ul {
+      background: #CDCDCD;
+      padding: 5%
+
+    }
+
+    select {
+      margin-bottom: 3%
+    }
