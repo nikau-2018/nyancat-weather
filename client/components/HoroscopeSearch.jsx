@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getHoroscopes } from '../api'
+import {getHoroscopes} from '../api'
 
 class HoroscopeSearch extends React.Component {
   constructor (props) {
